@@ -1,0 +1,56 @@
+SERVER/MAIN PROJECT DIRECTORY:
+(this starts the project and installs dependencies)
+(this is for an app that runs at heroku and has sqlite for local development)
+(tip! ignore node_modules in .gitignore. when deploying to heroku it will provide its own)
+
+npm init
+-name the package something descriptive with no spaces. use project name or webpg name
+-description should just be one sentence describing program a bit
+-author should be me
+-for the rest I can just press enter, then type y to confirm
+
+npm install express
+
+npm install pg 
+-(for postgres)
+
+npm install sequelize
+
+npm install sequelize-cli
+
+npm install --save-dev sqlite3
+-(this installs sqlite3 for development only, not for deployment at heroku)
+-(will be listed in package.json under devDependencies)
+
+npx sequelize init
+-for starting db model
+
+npx sequelize model:generate --name States --attributes name:string,visited:boolean,lat:float,lon:float,zoom:integer
+-making model for states
+-makes migrations and seeders. migrations instructions for db table. makes new model states.js for JS code to interact with
+-migrations can be good to document changes made to a table they are named by time created
+-seeders, instructions for providing initial data to app. works with json data and loads it to db so it isn't manually entered
+-a seed is initial data
+
+npx sequelize:migrate
+-after editing migration file ?
+
+npx sequelize seed:generate --name create-states
+-create seed
+
+npx sequelize db:seed:all
+-runs all cmds in seed files
+
+VUE:
+
+vue create client --no-git
+-do this in main project directory
+-create vue app with no git repository yay
+-it's nice to use a name that puts vue client at top of directory
+
+npm install axios
+-do this in vue client directory
+-install axios to help with requests
+
+npm install vue-router@next
+-install vue router for multiple "pages" in vue
