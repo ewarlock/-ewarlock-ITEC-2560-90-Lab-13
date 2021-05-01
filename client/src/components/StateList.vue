@@ -1,6 +1,7 @@
 <template>
 <div class="state-list-container">
     <div v-for="state in states" v-bind:key="state.name" class="state-container">
+        <!--one state detail component per state in states-->
         <!--bind state to state property in state detail-->
         <state-detail v-bind:state="state"
         v-on:update-visited="updateVisited"
@@ -36,6 +37,7 @@ export default {
         },
         updateVisited(stateName, visited) {
             this.$stateService.setVisited(stateName, visited).then( () => {
+                //fetches all states again after visited is changed
                 this.fetchAllStates()
             })
         }

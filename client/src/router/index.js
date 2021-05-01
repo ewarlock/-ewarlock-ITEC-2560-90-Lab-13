@@ -15,6 +15,7 @@ export default createRouter({
             component: StateList
         },
         {
+            //for about page
             path: '/about',
             name: 'AboutSite',
             component: AboutSite

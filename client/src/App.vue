@@ -3,6 +3,7 @@
 
  <page-header></page-header>
 
+<!--router-view contains components that are swapped out-->
 <router-view></router-view>
 
  <page-footer></page-footer>

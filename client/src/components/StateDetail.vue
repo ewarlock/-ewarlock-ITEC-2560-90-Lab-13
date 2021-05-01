@@ -3,6 +3,7 @@
     <span class="state-name">{{state.name}}</span>
 
     <div>
+        <!-- changes "visited" in data for selected state -->
         <input class="visit-state" type="checkbox" v-model="visited" v-on:change="visitedChanged">
     </div>
 
