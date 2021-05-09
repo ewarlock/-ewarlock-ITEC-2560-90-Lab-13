@@ -2,8 +2,16 @@
 
 let express = require('express')
 let states_api = require('./routes/states')
+let path = require('path')
 
 let app = express()
+
+//added this at the end before deploying to heroku...
+//making a path that runs this code
+let vueAppPath = path.join(__dirname, 'client', 'dist')
+
+//requests to the application go to dist
+app.use(express.static(vueAppPath))
 
 //enables server to understand requests w json
 app.use(express.json())

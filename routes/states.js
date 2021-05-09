@@ -13,6 +13,28 @@ router.get('/states', function(req, res, next) {
     }).catch(err => nexterr(err)) //send errors to error handler
 })
 
+router.get('/states/visited', function(req, res, next) {
+    //gets only visited states
+    States.findAll({where: {visited: true}}).then (states => {
+        return res.json(states)
+    }).catch(err => nexterr(err))
+})
+
+//for statemap. get one state. for example state/California
+router.get('/state/:name', function (req, res, name) {
+    let stateName = req.params.name
+    States.findOne({where: {name: stateName}})
+    .then(state => {
+        if (state) {
+            //if there is a state return data
+            return res.json(state)
+        } else {
+            //return an error if we make a request to an invalid state name
+            return res.status(404).send('State not found.')
+        }
+    }).catch(err => next(err))
+})
+
 //patch route to update a state visited or not
 router.patch('/states/:name', function(req, res, next) {
     let stateName = req.params.name

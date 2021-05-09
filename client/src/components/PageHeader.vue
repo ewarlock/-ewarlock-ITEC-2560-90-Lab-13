@@ -1,8 +1,13 @@
 <template>
-    
-    <div id="block-header">
-        <h1 id="title">Have you visited every state?</h1>
-    </div>
+
+    <!--when testing the site I kept wanting to click on the header to go to the home page-->
+    <!--so I decided to just make it a link to the home page...-->
+    <router-link to="/">
+        <div id="block-header">
+            <h1 id="title">Have you visited every state?</h1>
+        </div>
+    </router-link>
+
 </template>
 
 <script>
@@ -13,11 +18,14 @@ export default {
 </script>
 
 <style scoped>
+a {
+    text-decoration: none;
+}
 
 #block-header {
     padding: 2rem;
     margin-bottom: 1rem;
-    border: 1px ghostwhite solid;
+    border: 3px ghostwhite solid;
     border-radius: .3rem;
     background-color: burlywood;
     background-image: url('~@/assets/header-us-map.jpg');

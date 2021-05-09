@@ -1,11 +1,16 @@
 <template>
-<div class="state-list-container">
-    <div v-for="state in states" v-bind:key="state.name" class="state-container">
-        <!--one state detail component per state in states-->
-        <!--bind state to state property in state detail-->
-        <state-detail v-bind:state="state"
-        v-on:update-visited="updateVisited"
-        ></state-detail>
+<div>
+    <div>
+        <state-summary v-bind:states="states"></state-summary>
+    </div>
+    <div class="state-list-container">
+        <div v-for="state in states" v-bind:key="state.name" class="state-container">
+            <!--one state detail component per state in states-->
+            <!--bind state to state property in state detail-->
+            <state-detail v-bind:state="state"
+            v-on:update-visited="updateVisited"
+            ></state-detail>
+        </div>
     </div>
 </div>
 </template>
@@ -13,11 +18,13 @@
 <script>
 
 import StateDetail from '@/components/StateDetail.vue'
+import StateSummary from '@/components/StateSummary.vue'
 
 export default {
     name: 'StateList',
     components: {
-        StateDetail
+        StateDetail,
+        StateSummary,
     },
     data() {
         return {
@@ -34,11 +41,19 @@ export default {
                 //set data in this component = json response from call to states
                 this.states = states
             })
+            .catch (err => {
+                alert('Sorry, can\'t fetch state list.')
+                console.error(err)
+            })
         },
         updateVisited(stateName, visited) {
             this.$stateService.setVisited(stateName, visited).then( () => {
                 //fetches all states again after visited is changed
                 this.fetchAllStates()
+            })
+            .catch (err => {
+                alert('Sorry, can\'t update states.')
+                console.error(err)
             })
         }
     }

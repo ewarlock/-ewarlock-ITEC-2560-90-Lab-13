@@ -54,3 +54,5 @@ npm install axios
 
 npm install vue-router@next
 -install vue router for multiple "pages" in vue
+
+heroku apps:rename my-new-app-name
